@@ -7,3 +7,4 @@ class AddTableChats < ActiveRecord::Migration[8.0]
       t.timestamps null: false
     end
   end
+end

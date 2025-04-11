@@ -1,2 +1,2 @@
-class chat < ApplicationRecord
+class Chat < ApplicationRecord
 end
