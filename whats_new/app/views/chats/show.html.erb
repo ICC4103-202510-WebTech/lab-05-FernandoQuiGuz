@@ -1,0 +1,12 @@
+<h1>
+    <%= @chat.id %> 's Chat'
+</h1>
+
+<ul>
+    <li> <p> <%= @chat.sender_id %> </p> </li>
+    <li> <p> <%= @chat.receiver_id %> </p> </li>
+    <li> <p> <%= @chat.created_at %> </p> </li>
+    <li> <p> <%= @chat.updated_at %> </p> </li>
+</ul>
+<p> </p>
+<p> <%= link_to 'Back', chats_path %> </p>
