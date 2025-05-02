@@ -1,33 +1,33 @@
-<h1>New User</h1>
+<div class="container mt-4 p-4 bg-light border rounded shadow-sm">
+  <h2 class="text-primary mb-4">Create a New User</h2>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(@user.errors.count, "error") %> prevented this user from being saved:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: @user, local: true) do |f| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= pluralize(@user.errors.count, "error") %> </h5>
+        <ul class="mb-0">
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= f.label :first_name, class: 'form-label' %>
+      <%= f.text_field :first_name, class: 'form-control', placeholder: "" %>
     </div>
+
+    <div class="mb-3">
+      <%= f.label :last_name, class: 'form-label' %>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: "" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email, class: 'form-label' %>
+      <%= f.email_field :email, class: 'form-control', placeholder: "example@bluey.com" %>
+    </div>
+
+    <%= f.submit "Create User", class: 'btn btn-success' %>
   <% end %>
-
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div>
-    <%= f.submit "Create User" %>
-  </div>
-<% end %>
+</div>

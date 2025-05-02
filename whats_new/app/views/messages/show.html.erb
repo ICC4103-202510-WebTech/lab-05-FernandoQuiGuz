@@ -1,14 +1,14 @@
-<h1>
-    <%= @message.id %> 's Message
-</h1>
+<h1 class="mb-4">Message <%= @message.id %></h1>
 
-<ul>
-<li> <p> <%= @message.chat_id %> </p> </li>
-<li> <p> <%= @message.user_id %> </p> </li>
-<li> <p> <%= @message.body %> </p> </li>
-<li> <p> <%= @message.created_at %> </p> </li>
-<li> <p> <%= @message.updated_at %> </p> </li>
+<div class="mb-3">
+  <%= link_to 'Add new message', new_message_path, class: 'btn btn-primary' %>
+  <%= link_to 'Back to messages', messages_path, class: 'btn btn-secondary ms-2' %>
+</div>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item"><strong>Chat ID:</strong> <%= @message.chat_id %></li>
+  <li class="list-group-item"><strong>User ID:</strong> <%= @message.user_id %></li>
+  <li class="list-group-item"><strong>Body:</strong> <%= @message.body %></li>
+  <li class="list-group-item"><strong>Created At:</strong> <%= @message.created_at.strftime("%Y-%m-%d %H:%M") %></li>
+  <li class="list-group-item"><strong>Updated At:</strong> <%= @message.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
 </ul>
-
-<p> </p>
-<p> <%= link_to 'Back', messages_path %> </p>
