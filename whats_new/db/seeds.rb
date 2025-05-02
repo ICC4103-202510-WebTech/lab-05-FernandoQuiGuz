@@ -9,16 +9,16 @@
 #   end
 
 User.create!([
-  { email: "bluey@bluey.com", first_name: "Bluey", last_name: "Heeler" },
-  { email: "bingo@bluey.com", first_name: "Bingo", last_name: "Heeler" },
-  { email: "bandit@bluey.com", first_name: "Bandit", last_name: "Heeler" },
-  { email: "chilli@bluey.com", first_name: "Chilli", last_name: "Heeler" },
-  { email: "grandpa@bluey.com", first_name: "Grandpa", last_name: "Heeler" },
-  { email: "unclescooter@bluey.com", first_name: "Uncle", last_name: "Scooter" },
-  { email: "muffin@bluey.com", first_name: "Muffin", last_name: "Heeler" },
-  { email: "snickers@bluey.com", first_name: "Snickers", last_name: "Poodle" },
-  { email: "jackson@bluey.com", first_name: "Jackson", last_name: "Dog" },
-  { email: "calypso@bluey.com", first_name: "Calypso", last_name: "Teacher" }
+  { first_name: "Bluey", last_name: "Heeler", email: "bluey@bluey.com" },
+  { first_name: "Bingo", last_name: "Heeler", email: "bingo@bluey.com" },
+  { first_name: "Bandit", last_name: "Heeler", email: "bandit@bluey.com" },
+  { first_name: "Chilli", last_name: "Heeler", email: "chilli@bluey.com" },
+  { first_name: "Grandpa", last_name: "Heeler", email: "grandpa@bluey.com" },
+  { first_name: "Uncle", last_name: "Scooter", email: "unclescooter@bluey.com" },
+  { first_name: "Muffin", last_name: "Heeler", email: "muffin@bluey.com" },
+  { first_name: "Snickers", last_name: "Poodle", email: "snickers@bluey.com" },
+  { first_name: "Jackson", last_name: "Dog", email: "jackson@bluey.com" },
+  { first_name: "Calypso", last_name: "Teacher", email: "calypso@bluey.com" }
 ])
 
 Chat.create!([

@@ -1,0 +1,21 @@
+<%= form_with(model: @message, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :chat_id, "Chat" %>
+      <%= f.select :chat_id, Chat.all.map { |chat| ["Chat ##{chat.id} (#{chat.sender.first_name} → #{chat.receiver.first_name})", chat.id] }, prompt: "Select Chat", class: "form-control" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :user_id, "Author" %>
+      <%= f.select :user_id, User.all.map { |user| [user.first_name + ' ' + user.last_name, user.id] }, prompt: "Select Author", class: "form-control" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :body, "Message" %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.submit "Send Message", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  
