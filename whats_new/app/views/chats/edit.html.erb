@@ -1,0 +1,26 @@
+<h1 class="mb-4">Edit Chat</h1>
+
+<%= form_with(model: @chat, local: true) do |f| %>
+  <% if @chat.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@chat.errors.count, "error") %> prevented this chat from being saved:</h2>
+      <ul>
+        <% @chat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :sender_id %>
+    <%= f.number_field :sender_id, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :receiver_id %>
+    <%= f.number_field :receiver_id, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Update Chat", class: "btn btn-primary" %>
+<% end %>

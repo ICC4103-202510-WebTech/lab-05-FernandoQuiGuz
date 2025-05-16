@@ -1,13 +1,28 @@
-<h1 class="mb-4">Chat <%= @chat.id %></h1>
+<div class="container mt-5" style="max-width: 800px;">
+  <h1 class="mb-4 text-center">Chat <%= @chat.id %></h1>
 
-<div class="mb-3">
-  <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-primary' %>
-  <%= link_to 'Back to chats', chats_path, class: 'btn btn-secondary ms-2' %>
+  <div class="mb-3 text-center">
+    <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-primary' %>
+    <%= link_to 'Edit chat', edit_chat_path(@chat), class: 'btn btn-secondary ms-2' %>
+    <%= link_to 'Back to chats', chats_path, class: 'btn btn-outline-secondary ms-2' %>
+  </div>
+
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>Sender:</strong> <%= @chat.sender&.first_name || 'Unknown' %></li>
+    <li class="list-group-item"><strong>Receiver:</strong> <%= @chat.receiver&.first_name || 'Unknown' %></li>
+    <li class="list-group-item"><strong>Created At:</strong> <%= @chat.created_at.strftime("%Y-%m-%d %H:%M") %></li>
+    <li class="list-group-item"><strong>Updated At:</strong> <%= @chat.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
+    <li class="list-group-item"><strong>Messages Count:</strong> <%= @chat.messages.count %></li>
+  </ul>
+
+  <h3 class="mb-3">Messages</h3>
+  <ul class="list-group">
+    <% @chat.messages.each do |message| %>
+      <li class="list-group-item">
+        <strong><%= message.user&.first_name || 'Unknown' %>:</strong>
+        <%= message.body %>
+        <%= link_to "View", message_path(message), class: "btn btn-sm btn-outline-primary float-end" %>
+      </li>
+    <% end %>
+  </ul>
 </div>
-
-<ul class="list-group mb-3">
-  <li class="list-group-item"><strong>Sender ID:</strong> <%= @chat.sender_id %></li>
-  <li class="list-group-item"><strong>Receiver ID:</strong> <%= @chat.receiver_id %></li>
-  <li class="list-group-item"><strong>Created At:</strong> <%= @chat.created_at.strftime("%Y-%m-%d %H:%M") %></li>
-  <li class="list-group-item"><strong>Updated At:</strong> <%= @chat.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
-</ul>

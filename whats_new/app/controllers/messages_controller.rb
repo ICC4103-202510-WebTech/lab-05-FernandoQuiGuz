@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+    before_action :set_message, only:  [:show, :edit, :update]
+ 
     def index
       @messages = Message.all
     end
@@ -20,10 +22,20 @@ class MessagesController < ApplicationController
       end
     end
   
+    def edit
+    end 
+
+    def update
+    end
+
     private
   
     def message_params
       params.require(:message).permit(:chat_id, :user_id, :body)
+    end
+
+    def set_message
+      @message = Message.find(params[:id])
     end
   end
   

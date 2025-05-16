@@ -1,10 +1,12 @@
 class ChatsController < ApplicationController
+
+    before_action :set_chat, only: [:show, :edit, :update]
+
     def index
       @chats = Chat.all
     end
   
     def show
-      @chat = Chat.find(params[:id])
     end
   
     def new
@@ -20,10 +22,26 @@ class ChatsController < ApplicationController
       end
     end
   
+    def edit
+    end
+
+    def update
+      if @chat.update(chat_params)
+        redirect_to @chat
+      else
+        render :edit
+      end 
+    end
+    
     private
   
     def chat_params
       params.require(:chat).permit(:sender_id, :receiver_id)
     end
+
+    def set_chat 
+      @chat = Chat.find(params[:id])
+    end 
+
   end
   
