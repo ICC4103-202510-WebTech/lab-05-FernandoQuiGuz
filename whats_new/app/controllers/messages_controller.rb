@@ -26,6 +26,11 @@ class MessagesController < ApplicationController
     end 
 
     def update
+      if @message.update(message_params)
+        redirect_to @message, notice: 'Message was successfully updated.'
+      else
+        render :edit
+      end 
     end
 
     private
