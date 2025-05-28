@@ -8,21 +8,41 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create!([
-  { first_name: "Bluey", last_name: "Heeler", email: "bluey@bluey.com" },
-  { first_name: "Bingo", last_name: "Heeler", email: "bingo@bluey.com" },
-  { first_name: "Bandit", last_name: "Heeler", email: "bandit@bluey.com" },
-  { first_name: "Chilli", last_name: "Heeler", email: "chilli@bluey.com" },
-  { first_name: "Grandpa", last_name: "Heeler", email: "grandpa@bluey.com" },
-  { first_name: "Uncle", last_name: "Scooter", email: "unclescooter@bluey.com" },
-  { first_name: "Muffin", last_name: "Heeler", email: "muffin@bluey.com" },
-  { first_name: "Snickers", last_name: "Poodle", email: "snickers@bluey.com" },
-  { first_name: "Jackson", last_name: "Dog", email: "jackson@bluey.com" },
-  { first_name: "Calypso", last_name: "Teacher", email: "calypso@bluey.com" }
-])
 
+users_data= [
+  { first_name: "Bluey", last_name: "Heeler", email: ""},
+  { first_name: "Bluey", last_name: "Heeler", email: ""}
+]
+users_data.each do |user_data|
+  User.find_or_create_by!(email: user_data[:email]) do |user|
+    user.first_name = user_data[:first_name]
+    user.last_name = user_data[:last_name]
+    user.password = "password"
+  end
+end
+# User.find_or_create_by!(email: "mail@example.com") do |user|
+#   user.first_name = "First"
+#   user.last_name = "Last"
+#   user.password = "password"
+# end
+
+puts "Creating users..."
+# find_or_create_by! is used to ensure that the records are created only if they do not already exist.
+User.create!([
+  { first_name: "Bluey", last_name: "Heeler", email: "bluey@bluey.com" , password: "123456", password_confirmation: "123456" },
+  { first_name: "Bingo", last_name: "Heeler", email: "bingo@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Bandit", last_name: "Heeler", email: "bandit@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Chilli", last_name: "Heeler", email: "chilli@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Grandpa", last_name: "Heeler", email: "grandpa@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Uncle", last_name: "Scooter", email: "unclescooter@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Muffin", last_name: "Heeler", email: "muffin@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Snickers", last_name: "Poodle", email: "snickers@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Jackson", last_name: "Dog", email: "jackson@bluey.com" , password: "123456", password_confirmation: "123456"},
+  { first_name: "Calypso", last_name: "Teacher", email: "calypso@bluey.com" , password: "123456", password_confirmation: "123456"}
+])
+puts "Users created successfully!"
 Chat.create!([
-  { sender_id: 1, receiver_id: 2 },
+  { sender: User.find(1), receiver_id: 2 },
   { sender_id: 2, receiver_id: 3 },
   { sender_id: 3, receiver_id: 4 },
   { sender_id: 4, receiver_id: 5 },
