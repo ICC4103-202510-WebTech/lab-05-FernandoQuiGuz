@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = "You are not allowed to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
 
   protected
 

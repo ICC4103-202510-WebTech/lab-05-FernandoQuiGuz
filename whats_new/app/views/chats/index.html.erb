@@ -1,7 +1,15 @@
 <div class="container mt-4">
   <h1 class="mb-4">Chats</h1>
 
-  <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-primary mb-3' %>
+  <% if @chats.empty? %>
+    <div class="alert alert-info" role="alert">
+      No chats available.
+    </div>
+  <% end %>
+
+  <% if can? :create, Chat %>
+    <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-primary mb-3' %>
+  <% end %>
 
   <table class="table table-striped table-bordered">
     <thead class="table-dark">
@@ -22,7 +30,11 @@
           <td><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= chat.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= link_to 'View', chat_path(chat), class: 'btn btn-sm btn-outline-primary' %></td>
-          <td><%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-sm btn-outline-secondary' %></td>
+          <% if can? :edit, chat %>
+            <td><%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-sm btn-outline-secondary' %></td>
+          <% else %>
+            <td></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

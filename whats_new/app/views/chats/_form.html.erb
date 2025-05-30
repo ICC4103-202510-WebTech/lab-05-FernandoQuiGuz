@@ -1,0 +1,28 @@
+
+
+<%= form_with model: chat, local: true do |form| %>
+  <% if chat.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There were some errors:</h4>
+      <ul>
+        <% chat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :sender_id %>
+    <%= form.number_field :sender_id, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :receiver_id %>
+    <%= form.number_field :receiver_id, class: 'form-control' %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
