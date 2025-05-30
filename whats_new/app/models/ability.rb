@@ -8,10 +8,10 @@ class Ability
 
     can :read, Chat, sender_id: user.id
     can :read, Chat, receiver_id: user.id
+    can :create, Chat
 
     can :read, Message, chat: { sender_id: user.id }
     can :read, Message, chat: { receiver_id: user.id }
-
     can :create, Message
   end
 end

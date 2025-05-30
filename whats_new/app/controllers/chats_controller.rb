@@ -7,11 +7,9 @@ class ChatsController < ApplicationController
   end
 
   def show
-    # @chat ya está cargado y autorizado por load_and_authorize_resource
   end
 
   def new
-    # @chat ya está inicializado por load_and_authorize_resource
   end
 
   def create
@@ -24,7 +22,6 @@ class ChatsController < ApplicationController
   end
 
   def edit
-    # @chat ya está cargado y autorizado
   end
 
   def update
@@ -44,6 +41,6 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(:receiver_id, :sender_id)
+    params.require(:chat).permit(:receiver_id)
   end
 end
