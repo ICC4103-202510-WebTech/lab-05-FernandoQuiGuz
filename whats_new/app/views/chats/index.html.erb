@@ -19,7 +19,6 @@
         <th>Created At</th>
         <th>Updated At</th>
         <th>View</th>
-        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -30,11 +29,7 @@
           <td><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= chat.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= link_to 'View', chat_path(chat), class: 'btn btn-sm btn-outline-primary' %></td>
-          <% if can? :edit, chat %>
-            <td><%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-sm btn-outline-secondary' %></td>
-          <% else %>
-            <td></td>
-          <% end %>
+
         </tr>
       <% end %>
     </tbody>
