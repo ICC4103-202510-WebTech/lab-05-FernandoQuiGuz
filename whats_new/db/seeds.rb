@@ -11,7 +11,15 @@
 
 users_data= [
   { first_name: "Bluey", last_name: "Heeler", email: ""},
-  { first_name: "Bluey", last_name: "Heeler", email: ""}
+  { first_name: "Bandit", last_name: "Heeler", email: ""},
+  {first_name: "Bingo", last_name: "Heeler", email: ""},
+  { first_name: "Chilli", last_name: "Heeler", email: ""},
+  { first_name: "Grandpa", last_name: "Heeler", email: ""},
+  { first_name: "Uncle", last_name: "Scooter", email: ""},
+  { first_name: "Muffin", last_name: "Heeler", email: ""},
+  { first_name: "Snickers", last_name: "Poodle", email: ""},
+  { first_name: "Jackson", last_name: "Dog", email: ""},
+  { first_name: "Calypso", last_name: "Teacher", email: ""}
 ]
 users_data.each do |user_data|
   User.find_or_create_by!(email: user_data[:email]) do |user|
