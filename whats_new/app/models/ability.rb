@@ -9,12 +9,9 @@ class Ability
     can :read, Chat, sender_id: user.id
     can :read, Chat, receiver_id: user.id
 
-    can :create, Message do |message|
-      message.chat.users.include?(user)
-    end
+    can :read, Message, chat: { sender_id: user.id }
+    can :read, Message, chat: { receiver_id: user.id }
 
-    can :read, Message do |message|
-      message.chat.users.include?(user)
-    end
+    can :create, Message
   end
 end

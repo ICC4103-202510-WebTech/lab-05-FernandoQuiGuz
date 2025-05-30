@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @messages = Message.all
+    @messages = Message.accessible_by(current_ability)
   end
 
   def show
@@ -18,8 +18,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
 
-    unless user_in_chat?(@message.chat_id)
-      flash.now[:alert] = "Solo puedes enviar mensajes en chats donde participas."
+    unless @message.chat.present? && (@message.chat.sender_id == current_user.id || @message.chat.receiver_id == current_user.id)
+      flash.now[:alert] = "You can only send messages in chats you participate in."
       render :new, status: :unprocessable_entity and return
     end
 
@@ -33,18 +33,18 @@ class MessagesController < ApplicationController
   def edit
   end
 
-def update
-  if params[:message][:user_id].present? && params[:message][:user_id].to_i != @message.user_id
-    flash.now[:alert] = "No puedes cambiar el sender del mensaje."
-    return render :edit, status: :unprocessable_entity
-  end
+  def update
+    if params[:message][:user_id].present? && params[:message][:user_id].to_i != @message.user_id
+      flash.now[:alert] = "You can't change the sender of the message."
+      return render :edit, status: :unprocessable_entity
+    end
 
-  if @message.update(message_params)
-    redirect_to @message, notice: 'Message was successfully updated.'
-  else
-    render :edit, status: :unprocessable_entity
+    if @message.update(message_params)
+      redirect_to @message, notice: 'Message was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
-end
 
   private
 
@@ -54,10 +54,5 @@ end
 
   def set_message
     @message = Message.find(params[:id])
-  end
-
-  def user_in_chat?(chat_id)
-    chat = Chat.find_by(id: chat_id)
-    chat && (chat.sender_id == current_user.id || chat.receiver_id == current_user.id)
   end
 end
