@@ -32,14 +32,5 @@
     <% end %>
   </ul>
 
-  <h3 class="mb-3">Messages Sent</h3>
-  <ul class="list-group">
-    <% @user.messages.each do |message| %>
-      <li class="list-group-item">
-        <strong>Chat ID:</strong> <%= message.chat_id %> |
-        <strong>Message:</strong> <%= message.body %>
-        <%= link_to "View", message_path(message), class: "btn btn-sm btn-outline-secondary float-end" %>
-      </li>
-    <% end %>
-  </ul>
+
 </div>
