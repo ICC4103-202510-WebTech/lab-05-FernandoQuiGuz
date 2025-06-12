@@ -23,6 +23,13 @@ end
 
 puts "Users created successfully!"
 
+# Convertir a Bluey en admin
+admin_user = users.find { |u| u.email == "bluey@bluey.com" }
+if admin_user
+  admin_user.update!(admin: true)
+  puts "Bluey es ahora admin."
+end
+
 puts "Creating chats..."
 
 Chat.create!([
